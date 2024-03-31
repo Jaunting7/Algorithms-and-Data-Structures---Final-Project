@@ -31,7 +31,7 @@ graph = {
 def Dijkstra(graph, source, dest):
     unvisited = set(graph.keys()) # Get all graphs keys (letters) then convert to a set
     current_node = source # Starts at source node so set current node to source
-    nodes = {node: sys.maxsize for node in graph} # Dictionary with each node's values set to the max int value (infinite) | used to hold the shortest known distance from source node
+    nodes = {node: sys.maxsize for node in graph} # Dictionary with each node's values set to the max int value (infinite) | Used to hold the shortest known distance from source node
     nodes[source] = 0 # Set source node value to 0 (no distance from itself)
     path = {} # Keeps track of the shortest path from the source node to each node | key:value is neighbor_node:previous_node
 
@@ -41,9 +41,11 @@ def Dijkstra(graph, source, dest):
         return nodes
 
     while unvisited: # when all nodes are not visted
+
+        # Track which node to go to next
         min_distance = sys.maxsize # Sets min distance to the max int value (infinite)
         for node in unvisited: # For the nodes that are unvisted
-            if nodes[node] < min_distance: # If node value is less then min distance
+            if nodes[node] < min_distance: # If node value is less than min distance
                 min_distance = nodes[node] # updates min distance
                 current_node = node # set current node to the node
 
@@ -52,9 +54,10 @@ def Dijkstra(graph, source, dest):
 
         unvisited.remove(current_node) # Remove current node from unvisted
 
+        # Update shortest known distances
         for neighbor, distance in graph[current_node].items(): # Initialize neighbor and distance from the graph dictionary's respective key's value dictionary
             if neighbor in unvisited: # If neighbor unvisited
-                new_cost = nodes[current_node] + distance # add the distance (distance from current node to a neighbor node) to the current node
+                new_cost = nodes[current_node] + distance # add the distance (from current node to neighbor node) to the shortest known distance from source node to current node 
                 if new_cost < nodes[neighbor]: # If the new distance is less then the current shortest distance stored in neighbor node
                     nodes[neighbor] = new_cost # update neighbor shortest distance with the new cost
                     path[neighbor] = current_node # update neighbor with the current node
