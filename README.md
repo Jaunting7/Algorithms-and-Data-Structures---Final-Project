@@ -1,4 +1,4 @@
-# Algorithms-and-Data-Structures---Final-Project
+# Algorithms-and-Data-Structures---Final-Project---Dijkstra's Algorithm
 
 # Setup and Execution
 Download program and run in terminal. 
